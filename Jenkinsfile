@@ -1,25 +1,16 @@
 pipeline {
     agent any
-    environment {
-        APP_ENV = 'dev'
-        BUILD_TAG = "${env.BUILD_ID}"
-    }
     stages {
-        stage('Checkout') {
+        stage('Build Docker') {
             steps {
-                echo "📥 Pulling code (simulated)..."
+                sh 'docker build -t myapp:latest .'
             }
         }
-        stage('Build') {
+        stage('Run Docker') {
             steps {
-                echo "🔨 Building project..."
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'echo "Environment = $APP_ENV"'
-                sh 'echo "Build Tag = $BUILD_TAG"'
+                sh 'docker run -d -p 8081:8080 --name myapp myapp:latest || true'
             }
         }
     }
 }
+
