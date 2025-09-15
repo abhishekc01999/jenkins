@@ -1,14 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('Build Docker') {
+        stage('Pull Image') {
             steps {
-                sh 'docker build -t myapp:latest .'
+                sh 'docker pull nginx:latest'
             }
         }
-        stage('Run Docker') {
+        stage('Run Container') {
             steps {
-                sh 'docker run -d -p 8081:8080 --name myapp myapp:latest || true'
+                sh 'docker run -d -p 8080:80 --name test-nginx nginx:latest || true'
+            }
+        }
+        stage('Verify') {
+            steps {
+                sh 'curl -I http://localhost:8080'
             }
         }
     }
