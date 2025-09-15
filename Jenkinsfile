@@ -8,12 +8,12 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 8080:80 --name test-nginx nginx:latest || true'
+                sh 'docker run -d -p 8081:80 --name testing-nginx nginx:latest || true'
             }
         }
         stage('Verify') {
             steps {
-                sh 'curl -I http://localhost:8080'
+                sh 'curl -I http://localhost:8081'
             }
         }
     }
