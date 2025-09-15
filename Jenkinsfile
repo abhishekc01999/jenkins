@@ -17,16 +17,6 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "✅ Running tests..."
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo "🚀 Deploying application..."
-            }
-        }
-        stage('Test') {
-            steps {
                 sh 'echo "Environment = $APP_ENV"'
                 sh 'echo "Build Tag = $BUILD_TAG"'
             }
