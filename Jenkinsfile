@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        APP_ENV = 'dev'
+        BUILD_TAG = "${env.BUILD_ID}"
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -23,7 +27,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "🚀 testing git trigger..."
+                sh 'echo "Environment = $APP_ENV"'
+                sh 'echo "Build Tag = $BUILD_TAG"'
             }
         }
     }
