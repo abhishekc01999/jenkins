@@ -21,5 +21,10 @@ pipeline {
                 echo "🚀 Deploying application..."
             }
         }
+        stage('Test') {
+            steps {
+                echo "🚀 testing git trigger..."
+            }
+        }
     }
 }
