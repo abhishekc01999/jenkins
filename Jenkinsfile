@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Pull Image') {
             steps {
-                sh 'docker pull nginx:latest'
+                sh 'docker pull docker.io/library/nginx:latest'
             }
         }
         stage('Run Container') {
